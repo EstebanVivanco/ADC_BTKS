@@ -1,0 +1,17 @@
+/* #bgindex {
+
+    background-image: url(fondoasientos.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+
+} */
+
+.divbtn {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 5%;
+}

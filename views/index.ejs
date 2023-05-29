@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <title>Inicio De Sesión</title>
+</head>
+<body style="background-color: #dc3545" >
+    <% if(!isAuthenticated){%>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="">BUTAQUERÍA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+                      
+      <div class="container mt-5">
+        <div class="card light">
+          <div class="row">
+            <div class="col-sm-5">
+              <img src="https://images.pexels.com/photos/14855650/pexels-photo-14855650.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+            </div>
+    
+            <div class="col-sm-7" style="text-align: center;">
+              <img src="butaca.png" alt="" width="20%" height="20%" style="margin-top: 20%;">
+              <h1 style="margin-top: 5%;">Inicia Sesión</h1>
+              <h1 style="margin-top: 1%;">ó</h1>
+              <h1 style="margin-top: 1%;">Registrate</h1>
+                <a class="btn btn-danger" href="/login/" style="width: 50%; margin-top: 4%;">Iniciar Sesión</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%}else{%>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">BUTAQUERÍA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
+                </li>
+
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="card light">
+        <div class="row">
+          <div class="col-sm-5">
+            <img src="https://images.pexels.com/photos/14855650/pexels-photo-14855650.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+          </div>
+
+          <div class="col-sm-7" style="text-align: center;">
+            <img src="butaca.png" alt="" width="20%" height="20%" style="margin-top: 20%;">
+            <h1 style="margin-top: 5%;">ENTRA A VER LOS ASIENTOS DISPONIBLE</h1>
+              <a class="btn btn-danger" href="asientos" style="width: 50%; margin-top: 10%;">VER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <%}%>
+</body>
+</html>
