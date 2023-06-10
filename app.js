@@ -107,8 +107,8 @@ function backup() {
 
 
 }
-// Ejecutar la función backup() cada 10 minutos
-// setInterval(backup, 1 * 60 * 1000);
+// Ejecutar la función backup() cada 1 minutos HILO HILO HILO HILO
+setInterval(backup, 3 * 60 * 1000);
   
 //Backup x Botón
 app.get('/backup', (res,req) => {

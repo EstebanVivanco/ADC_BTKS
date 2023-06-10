@@ -22,9 +22,10 @@ const activarModoAutomatico = () => {
     console.log('hora :>> ', hora);
 
     if (hora >= 19 || hora < 6){
-        temaOscuro();
-    }else{
         temaClaro();
+    }else{
+        temaOscuro();
+
     }
 
 }

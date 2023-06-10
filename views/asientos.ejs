@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!-- Option 1: Include in HTML -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  
+    <!-- Option 1: Include in HTML -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
-<body data-bs-theme="light" onload="activarModoAutomatico()">
+<body data-bs-theme="light" onload="activarModoAutomatico()" >
   <% if(!isAuthenticated){%>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -62,37 +68,50 @@
     </nav>
   
         <center>
-          <h1 class="mt-4">Asientos para Reservar</h1>
+          <h1 style="font-family: 'Signika Negative', sans-serif; margin-top: 100px;">Asientos para Reservar</h1>
         </center>
         <!-- <pre><%= JSON.stringify(user,null,2) %></pre> -->
         
         <div class="row" style="padding: 5%;" >
-            <div class="card bg-light">
+          <div class="col-sm-8"  style="height: 100%;">
+              <div class="card bg-light">
                 <div class="card-body">
-                   <h5 class="card-title">Ticket de Reserva</h5>
+                  <h5 class="card-title">Ticket de Reserva</h5>
                 </div>
                 <ul id="miLista" ></ul>
                 <form action="/guardar" method="post">
-
-                <input type="text" value="<%= JSON.stringify(user.sub,null,2) %>" id="user" name="user" hidden>
-                <input type="text" value="" name="inputcontainer" id="inputcontainer" hidden required>
-                <center>
-                  <button style="width: 40%;" type="submit" class="btn btn-primary mb-2" >Realizar Solicitud</button>
-                </center>
+                  <input type="text" value="<%= JSON.stringify(user.sub,null,2) %>" id="user" name="user" hidden>
+                  <input type="text" value="" name="inputcontainer" id="inputcontainer" hidden required>
+                  <center>
+                    <button style="width: 40%;" type="submit" class="btn btn-primary mb-2" >Realizar Solicitud</button>
+                  </center>
                 </form>
+              
+              </div> 
+              </div> 
+            <!-- finrw -->
 
+            <div class="col-sm-4">
+              <div class="card bg-light" style="height: 100%;">
+                <div class="card-body">
+                  <h4> ATENCIÓN !</h4>
+                  <p class="card-text">Todas tus entradas reservadas se podrán ver en el apartado de "Mis Asientos"</p>
+                </div>
+              </div>
             </div>
+
+          </div>
         </div>
 
         <div class="row" style="padding-left: 2%; padding-right: 2%;">
         <% results.forEach((asiento) => { %>
 
                 <div class="col-sm-2 mt-2 ">
-                  <div class="card bg-light">
+                  <div class="card bg-body-tertiary">
                     <div class="card-body"> 
                       <h5 class="card-title">Asiento Nº <%= asiento.numero %></h5>
                       <p class="card-text" hidden><%= asiento.id_asiento %></p>
-                      <h6 class="card-text" style="color: black"> <%= asiento.estado === 0 ? 'DISPONIBLE' : 'YA RESERVADO' %></h6>
+                      <h6 class="card-text" > <%= asiento.estado === 0 ? 'DISPONIBLE' : 'YA RESERVADO' %></h6>
                       <% if(asiento.estado === 0){%>
                         <a  class="btn btn-primary miBoton" style="width: 100%;">Reservar</a>
                       <%}else{%>
