@@ -19,6 +19,53 @@ router.get('/asientos',  (req, res)=>{
 
 })
 
+
+router.get('/crudasientos',  (req, res)=>{
+
+    conexion.query('SELECT * FROM asiento', (error, results) => {
+        res.render('crudasientos', {isAuthenticated : req.oidc.isAuthenticated(), user: req.oidc.user, results:results });
+    })
+
+})
+
+router.get('/deleteasiento/:id',  (req, res)=>{
+
+    const id = req.params.id;
+
+    conexion.query('UPDATE asiento SET estado = 1 WHERE id_asiento = ?',[id], (error, results) => {
+
+        if(error){
+
+            throw error;
+    
+        }else{
+                conexion.query('SELECT * FROM asiento', (error, results) => {
+                
+                    res.render('crudasientos' , { results: results});
+                }) 
+        }
+    }) 
+
+})
+
+router.get('/editarasiento/:id',  (req, res)=>{
+
+    const id = req.params.id;
+
+    conexion.query('SELECT * FROM asiento WHERE id_asiento = ?',[id], (error, results) => {
+
+        if(error){
+
+            throw error;
+    
+        }else{
+            res.render('editarasiento', {results: results});
+        }
+    }) 
+    
+
+})
+
 router.get('/misasientos/:id',  (req, res)=>{
 
     const id = req.params.id;
@@ -41,10 +88,17 @@ router.get('/opresp',  (req, res)=>{
 })
 
 
-  
+router.get('/crearasiento',  (req, res)=>{
+
+    res.render('crearasiento');
+
+})
+
 
 
 const crud = require('./controllers/crud');
 router.post('/guardar', crud.guardar);
 router.post('/reload', crud.reload);
+router.post('/create', crud.create);
+router.post('/update', crud.update);
 module.exports = router;

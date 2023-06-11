@@ -44,18 +44,26 @@
                   <button onclick="cambiarTema()" class="btn rounded-fill"><i id="dl-icon" class="bi bi-moon"></i></button>
                 </li>
 
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/misasientos/<%= JSON.stringify(user.sub,null,2) %>">Mis Asientos</a>
-                </li>
 
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="opresp">Backup</a>
-                </li>
 
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
-                </li>
-
+                <% if (user.sub === 'google-oauth2|113091514139501158590') { %>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="opresp">Backup</a>
+                  </li>
+                <% }else if (user.sub === 'google-oauth2|100577749636531673903') { %>            
+                
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="crudasientos.ejs">Mantenedor Asientos</a>
+                  </li>
+                <% }else{ %>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/misasientos/<%= JSON.stringify(user.sub,null,2) %>">Mis Asientos</a>
+                  </li>
+                <%}%>
+                
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
+                  </li>
                 <li class="nav-item">
                   <form action="/reload" method="post">
                     <button type="submit" class="btn rounded-fill"><i class="bi bi-arrow-clockwise"></i></button>
@@ -80,7 +88,7 @@
                 </div>
                 <ul id="miLista" ></ul>
                 <form action="/guardar" method="post">
-                  <input type="text" value="<%= JSON.stringify(user.sub,null,2) %>" id="user" name="user" hidden>
+                  <input type="text" value="<%= JSON.stringify(user.sub) %>" id="user" name="user" hidden>
                   <input type="text" value="" name="inputcontainer" id="inputcontainer" hidden required>
                   <center>
                     <button style="width: 40%;" type="submit" class="btn btn-primary mb-2" >Realizar Solicitud</button>
