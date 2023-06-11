@@ -46,14 +46,17 @@
 
 
 
-                <% if (user.sub === 'google-oauth2|113091514139501158590') { %>
+                <% if (user.sub === 'google-oauth2|113091514139501158590' ) { %>
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="opresp">Backup</a>
                   </li>
-                <% }else if (user.sub === 'google-oauth2|100577749636531673903') { %>            
+
+                <%}%>
+
+                <% if (user.sub === 'google-oauth2|100577749636531673903' || user.sub === 'google-oauth2|113091514139501158590') { %>            
                 
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="crudasientos.ejs">Mantenedor Asientos</a>
+                    <a class="nav-link active" aria-current="page" href="crudasientos">Mantenedor Asientos</a>
                   </li>
                 <% }else{ %>
                   <li class="nav-item">
@@ -75,11 +78,11 @@
         </div>
     </nav>
   
+    <% if (user.sub !== 'google-oauth2|113091514139501158590' && user.sub !== 'google-oauth2|100577749636531673903') { %>
         <center>
           <h1 style="font-family: 'Signika Negative', sans-serif; margin-top: 100px;">Asientos para Reservar</h1>
         </center>
         <!-- <pre><%= JSON.stringify(user,null,2) %></pre> -->
-        
         <div class="row" style="padding: 5%;" >
           <div class="col-sm-8"  style="height: 100%;">
               <div class="card bg-light">
@@ -99,11 +102,15 @@
               </div> 
             <!-- finrw -->
 
+
             <div class="col-sm-4">
               <div class="card bg-light" style="height: 100%;">
                 <div class="card-body">
                   <h4> ATENCIÓN !</h4>
                   <p class="card-text">Todas tus entradas reservadas se podrán ver en el apartado de "Mis Asientos"</p>
+                  <div id="totalprecio">
+                    <ul id="miLista2" ></ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -118,8 +125,9 @@
                   <div class="card bg-body-tertiary">
                     <div class="card-body"> 
                       <h5 class="card-title">Asiento Nº <%= asiento.numero %></h5>
+                      <h7 class="card-title">Precio: $<%= asiento.precio %></h7>
                       <p class="card-text" hidden><%= asiento.id_asiento %></p>
-                      <h6 class="card-text" > <%= asiento.estado === 0 ? 'DISPONIBLE' : 'YA RESERVADO' %></h6>
+                      <h6 class="card-text mt-2 "> <%= asiento.estado === 0 ? 'DISPONIBLE' : 'YA RESERVADO' %></h6>
                       <% if(asiento.estado === 0){%>
                         <a  class="btn btn-primary miBoton" style="width: 100%;">Reservar</a>
                       <%}else{%>
@@ -133,10 +141,32 @@
         </div>
 
 
-
-    <%}%>
+       
+      <!-- IF TOTAL -->
     <script async src="/switchtheme.js"></script>
     <script src="/carrito.js"></script>
+    <script src="/totalprecio.js"></script>
+    <% } else{ %>
+      <div class="container mt-5">
+        <div class="card light">
+          <div class="row">
+
+            <div class="col-sm-6">
+              <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" width="600px">
+            </div>
+
+              <div class="col-sm-6" style="text-align: center;">
+                <h1 style="text-align: center; margin-top: 25%;">VISTA ADMINISTRADOR</h1>
+                <p>Crear Asientos y Realizar Respaldos</p>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    <%}%> 
+
+
+    <%}%> 
 
 </body>
 </html>

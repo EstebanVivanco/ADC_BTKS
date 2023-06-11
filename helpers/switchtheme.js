@@ -19,7 +19,6 @@ const activarModoAutomatico = () => {
     var fecha = new Date();
     var hora = fecha.getHours();
 
-    console.log('hora :>> ', hora);
 
     if (hora >= 19 || hora < 6){
         temaClaro();

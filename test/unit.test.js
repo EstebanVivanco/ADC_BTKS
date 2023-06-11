@@ -1,34 +1,36 @@
-// const { guardar } = require('../controllers/crud');
-// const conexion = require('../database/bd');
+const validarCorreo = require('../helpers/emailcheck');
+const suma = require('../helpers/suma');
+const activarModoAutomatico = require('../helpers/switchtheme');
 
-// describe('guardar', () => {
-//   beforeEach(() => {
-//     // Restaurar el estado inicial de la base de datos o realizar configuraciones necesarias antes de cada prueba
-//   });
 
-//   afterEach(() => {
-//     // Limpiar o restaurar el estado de la base de datos después de cada prueba
-//   });
+describe('Pruebas unitaria para validarCorreo()', () => {
+    
+    test('Debería devolver true para un correo válido', () => {
+      const correoValido = 'esteban.vivanco@gmail.com';
+      expect(validarCorreo(correoValido)).toBe(true);
+    });
+  
+    test('Debería devolver false para un correo inválido', () => {
+      const correoInvalido = 'correo@invalido';
+      expect(validarCorreo(correoInvalido)).toBe(false);
+    });
 
-//   test('debería guardar un nuevo registro y redirigir a "asientos"', () => {
-//     const req = {
-//       body: {
-//         inputcontainer: '1,2,3',
-//         user: 'userId',
-//       },
-//     };
-//     const res = {
-//       redirect: jest.fn(),
-//     };
+});
 
-//     guardar(req, res);
 
-//     expect(conexion.query).toHaveBeenCalledTimes(2); // Verifica que se haya llamado a la función de consulta de la base de datos dos veces
-//     expect(conexion.query).toHaveBeenCalledWith(
-//       'UPDATE asiento SET ? WHERE id_asiento IN (?)',
-//       [{ estado: 1, id_usuario: 'userId' }, ['1', '2', '3']],
-//       expect.any(Function)
-//     );
-//     expect(res.redirect).toHaveBeenCalledWith('asientos');
-//   });
-// });
+describe('suma', () => {
+    test('debería sumar los valores correctamente', () => {
+      // Configurar el estado inicial
+      const lista = [9990, 4990, 4990, 4990, 9990];
+  
+      // Llamar a la función que se va a testear
+      const resultado = suma(lista);
+  
+      // Verificar el resultado esperado
+      expect(resultado).toBe(34950);
+    });
+});
+
+
+
+
