@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;600&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet"> 
+    <title>Asientos</title>
+
 </head>
 <body data-bs-theme="light" onload="activarModoAutomatico()" >
   <% if(!isAuthenticated){%>
@@ -47,6 +49,7 @@
 
 
                 <% if (user.sub === 'google-oauth2|113091514139501158590' ) { %>
+
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="opresp">Backup</a>
                   </li>
@@ -67,11 +70,16 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
                   </li>
-                <li class="nav-item">
-                  <form action="/reload" method="post">
-                    <button type="submit" class="btn rounded-fill"><i class="bi bi-arrow-clockwise"></i></button>
-                  </form>
-                </li>
+
+                  <% if (user.sub === 'google-oauth2|100577749636531673903' || user.sub === 'google-oauth2|113091514139501158590') { %>            
+
+                  <li class="nav-item">
+                    <form action="/reload" method="post">
+                      <button type="submit" class="btn rounded-fill"><i class="bi bi-arrow-clockwise"></i></button>
+                    </form>
+                  </li>
+
+                  <%}%>
 
             </ul>
           </div>
@@ -104,11 +112,12 @@
 
 
             <div class="col-sm-4">
-              <div class="card bg-light" style="height: 100%;">
+              <div class="card bg-light">
                 <div class="card-body">
                   <h4> ATENCIÓN !</h4>
                   <p class="card-text">Todas tus entradas reservadas se podrán ver en el apartado de "Mis Asientos"</p>
                   <div id="totalprecio">
+                    <h6>Total a pagar: </h6>
                     <ul id="miLista2" ></ul>
                   </div>
                 </div>
