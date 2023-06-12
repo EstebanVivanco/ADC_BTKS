@@ -1,6 +1,7 @@
 const validarCorreo = require('../helpers/emailcheck');
 const suma = require('../helpers/suma');
-const activarModoAutomatico = require('../helpers/switchtheme');
+const validarSuperAdmin = require('../helpers/sesionadmin');
+
 
 
 describe('Pruebas unitaria para validarCorreo()', () => {
@@ -18,7 +19,7 @@ describe('Pruebas unitaria para validarCorreo()', () => {
 });
 
 
-describe('suma', () => {
+describe('Suma correcta del valor de las entradas ', () => {
     test('debería sumar los valores correctamente', () => {
       // Configurar el estado inicial
       const lista = [9990, 4990, 4990, 4990, 9990];
@@ -32,5 +33,20 @@ describe('suma', () => {
 });
 
 
+describe('Validar usuario REST Auth0', () => {
+
+  test('Validar credencial de Auth0 para validar que es administrador', () => {
+    const cadena = 'google-oauth2|113091514139501158590';
+    const resultado = validarSuperAdmin(cadena);
+    expect(resultado).toBe(true);
+  });
+
+  test('Validar credencial de Auth0 para validar que no sea administrador', () => {
+    const cadena = 'google-oauth2|11309243564541158590';
+    const resultado = validarSuperAdmin(cadena);
+    expect(resultado).toBe(false);
+  });
+
+});
 
 
