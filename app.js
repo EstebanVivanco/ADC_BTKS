@@ -105,7 +105,6 @@ function backup() {
     });
   });
 
-
 }
 // Ejecutar la función backup() cada 1 minutos HILO HILO HILO HILO
 setInterval(backup, 30 * 60 * 1000);
